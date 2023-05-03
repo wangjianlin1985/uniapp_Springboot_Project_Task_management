@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+		<div class="row">
+	        <div class="btn-group-sm" id="toolbar" >
+		        <a class="btn btn-success" onclick="$.operate.add()" >
+		            <i class="fa fa-plus"></i> 新留言
+		        </a>
+	        </div>
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+	    </div>
+	</div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "/task/message/";
+		var taskId = [[${taskId}]];
+        $(function() {
+            var options = {
+                url: prefix + "/list/" + taskId,
+                createUrl: prefix + "/add/"+taskId,
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                modalName: "留言列表",
+                columns: [
+                {
+                    field: 'id',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'content',
+                    title: '内容'
+                },
+                {
+                    field: 'time',
+                    title: '时间'
+                },
+                {
+                    field: 'user.userName',
+                    title: '姓名'
+                }]
+            };
+            $.table.init(options);
+        });
+         
+    </script>
+</body>
+</html>

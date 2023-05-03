@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('任务列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+		<div class="row">
+			 <div class="col-sm-12 search-collapse">
+                <form id="job-form">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                名称：<input type="text" name="name"/>
+                            </li>
+                            
+                            <li>
+                                姓名：<input type="text" name="user.userName"/>
+                            </li>
+                            
+                            <li>
+                            	任务列表：
+                            	<select name="project.id" >
+                        			<option th:each="project : ${projectList}" th:text="${project.name}" th:value="${project.id}"></option>
+                    			</select>
+                            </li>
+                            
+                            <li>
+                            	状态：
+                            	<select name="status" >
+                            		<option value=''>全部</option>
+                            		<option value='0'>进行中</option>
+                            		<option value='1'>正常完成</option>
+                            		<option value='2'>超时完成</option>
+                            		<option value='3'>不能完成</option>
+                            	</select>
+                            </li>
+                            
+                            <li>
+                            	优先级：
+                            	<select name="yxj"  th:with="type=${@dict.getType('task_yxj')}">
+                            		<option value=''>全部</option>
+				                	<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+				            	</select>
+                            </li>
+                            
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+		
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+	    </div>
+	</div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "/task/task/";
+		var projectId = [[${projectId}]];
+        $(function() {
+            var options = {
+                url: prefix + "/taskList",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                detailUrl: prefix + "/view/{id}",
+                removeUrl: prefix + "/remove",
+                modalName: "任务列表",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'user.userName',
+                    title: '姓名'
+                },
+                {
+                    field: 'name',
+                    title: '任务名称'
+                },
+                {
+                    field: 'remark',
+                    title: '任务描述'
+                },
+                
+                {
+                    field: 'project.name',
+                    title: '项目'
+                },
+                {
+                    field: 'step.name',
+                    title: '步骤'
+                },
+                
+                {
+                    field: 'label.name',
+                    title: '标签'
+                },
+                {
+                    field: 'yxj',
+                    title: '优先级'
+                },
+                {
+                    field: 'endTime',
+                    title: '预计时间'
+                },
+                {
+                    field: 'finishTime',
+                    title: '完成时间'
+                },
+                
+                {
+                	field: 'status',
+                    title: '状态',
+                    formatter: function(value, row, index) {   //0进行中  1正常完成  2超时完成 3 不能完成
+                        if(value == 0){
+                        	return "进行中"
+                        } else if(value == 1) {
+                        	return "正常完成"
+                        } else if(value == 2){
+                        	return "超时完成"
+                        } else {
+                        	return "不能完成"
+                        }
+                    }
+                },
+                {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		                var actions = [];
+		                actions.push('<a class="btn btn-warning btn-xs " href="javascript:void(0)" onclick="$.operate.detail(\'' + row.id + '\')">详情</a> ');
+		                actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="openMessage(\'' + row.id + '\')">留言</a> ');
+		                return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+         
+        
+        function openMessage(id){
+     	   $.modal.open("留言列表", ctx + "/task/message/index/" + id);
+        }
+    </script>
+</body>
+</html>

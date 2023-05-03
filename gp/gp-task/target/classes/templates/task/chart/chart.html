@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('图')" />
+    <th:block th:include="include :: layout-latest-css" />
+    <style type="text/css">
+    	.he {
+    		height: 400px;
+    		
+    	}
+    </style>
+</head>
+<body class="gray-bg">
+    <div class="" style="background:white;">
+        <div  id="main-chart1" class="he main-content"  style="width:30%" >
+               
+        </div>
+        <div  id="main-chart2" class="he main-content"  style="margin-left:33%;margin-top:-400px;width:30%" >
+               
+        </div>
+        <div  id="main-chart3" class="he main-content"  style="margin-left:66%;margin-top:-400px;width:30%" >
+               
+        </div>
+    </div>
+    
+    
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: layout-latest-js" />
+    <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script th:inline="javascript">
+    	var countTask = [[${countTask}]];
+    	var countTaskTotal = [[${countTaskTotal}]];
+    	var countProject = [[${countProject}]];
+    	var countProjectJoin = [[${countProjectJoin}]];
+    	var yxjMap = [[${yxjMap}]];
+    	var mapList = [[${mapList}]];
+    	var statusTodo = [[${statusTodo}]];
+    	var statusOk = [[${statusOk}]];
+    	var statusLate = [[${statusLate}]];
+    	var statusNo = [[${statusNo}]];
+    	
+    	// 概览图
+    	loadChart1();
+        function loadChart1(){
+            var myChart1 = echarts.init(document.getElementById('main-chart1'));
+            var option1 = {
+				title: {
+       		        text: '项目概览',
+       		        left: 'center'
+       		    },
+          	    xAxis: {
+          	        type: 'category',
+          	        data: ['项目总数', '我参加的项目', '任务总数',"我的任务数量"]
+          	    },
+          	    yAxis: {
+          	        type: 'value'
+          	    },
+          	    series: [{
+          	        data: [countProject, countProjectJoin,countTaskTotal,countTask],
+          	        type: 'bar',
+          	        showBackground: true,
+          	        backgroundStyle: {
+          	            color: 'rgba(220, 220, 220, 0.8)'
+          	        }
+          	    }]
+          	};
+            myChart1.setOption(option1);
+        }
+        
+        
+        // 任务优先级图
+        loadChart2();
+        function loadChart2(){
+			var obj = JSON.parse(JSON.stringify(yxjMap))
+	        var yxjObj = []
+	        Object.keys(obj).forEach(key => {
+				var o = {
+					value: obj[key],
+					name: key
+				}
+				yxjObj.push(o)
+	        })
+        	var myChart2 = echarts.init(document.getElementById('main-chart2'));
+            var option2 = {
+       		    title: {
+       		        text: '任务优先级',
+       		        left: 'center'
+       		    },
+       		    tooltip: {
+       		        trigger: 'item',
+       		        formatter: '{a} <br/>{b} : {c} ({d}%)'
+       		    },
+       		    series : [
+			        {
+			            name: '优先级',
+			            type: 'pie',
+			            radius: '55%',
+			            roseType: 'angle',
+			            data: yxjObj
+			        }
+			    ]
+       		};
+            myChart2.setOption(option2);
+        }
+        
+        
+        
+        // 任务状态
+        loadChart3();
+        function loadChart3(){
+        	var myChart3 = echarts.init(document.getElementById('main-chart3'));
+            var option3 = {
+       		    title: {
+       		        text: '任务状态',
+       		        left: 'center'
+       		    },
+       		    tooltip: {
+       		        trigger: 'item',
+       		        formatter: '{a} <br/>{b} : {c} ({d}%)'
+       		    },
+       		    series : [
+			        {
+			            name: '状态',
+			            type: 'pie',
+			            radius: '55%',
+			            roseType: 'angle',
+			            data: [
+			            	{name: "进行中",value: statusTodo },
+			            	{name: "已完成",value: statusOk },
+			            	{name: "预期",value: statusLate },
+			            	{name: "不能完成",value: statusNo }
+			            ]
+			        }
+			    ]
+       		};
+            myChart3.setOption(option3);
+        }
+    </script>
+</body>
+</html>

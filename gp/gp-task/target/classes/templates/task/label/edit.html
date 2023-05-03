@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('修改')" />
+</head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-update"  th:object="${label}" >
+			<input name="id"  type="hidden"  th:field="*{id}" />
+			<div class="form-group">
+				<label class="col-sm-3 control-label"><span style="color: red; ">*</span>名称：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="name" id="name" th:field="*{name}" required>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+	<th:block th:include="include :: footer" />
+	<script type="text/javascript">
+		var prefix = ctx + "task/label";
+	
+		function submitHandler() {
+	        if ($.validate.form()) {
+	        	$.operate.save(prefix + "/edit", $('#form-update').serialize());
+	        }
+	    }
+		
+		$("#form-update").validate({
+			onkeyup: false,
+			rules:{
+				sort:{
+					digits:true
+				}
+			},
+			messages: {
+		        
+		    },
+		    focusCleanup: true
+		});
+		
+	</script>
+</body>
+</html>

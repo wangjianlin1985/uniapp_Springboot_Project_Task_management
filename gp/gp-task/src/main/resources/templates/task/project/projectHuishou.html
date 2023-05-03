@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('项目列表')" />
+</head>
+<body class="gray-bg">
+	<div class="container-div">
+		<div class="row">
+			<div class="btn-group-sm" id="toolbar" role="grade">
+				<a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" >
+		            <i class="fa fa-remove"></i> 彻底删除
+		        </a>
+	        </div>
+        
+	        <div class="col-sm-12 select-table table-striped">
+			    <table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="include :: footer" />
+	<script th:inline="javascript">
+		var prefix = ctx + "task/project";
+
+		$(function() {
+		    var options = {
+		        url: prefix + "/huishouList",
+		        removeUrl: prefix + "/remove",
+		        showSearch: false,
+		        modalName: "项目信息",
+		        columns: [{
+		            checkbox: true
+		        },
+		        {
+		            field: 'id',
+		            title: '项目编号'
+		        },
+		        {
+		            field: 'name',
+		            title: '项目名称',
+		        },
+		        {
+		            field: 'duty.userName',
+		            title: '项目负责人',
+		        },
+		        {
+		            field: 'temp.name',
+		            title: '模板'
+		        },
+		        {
+		            field: 'remark',
+		            title: '说明'
+		        },
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		                var actions = [];
+		                actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="updateStatus(\'' + row.id + '\')">还原</a> ');
+		                return actions.join('');
+		            }
+		        }]
+		    };
+		    $.table.init(options);
+		});
+		
+		function updateStatus(id){
+			$.operate.post(ctx + "/task/project/updateStatus",{id:id,status:0});
+		}
+        
+	</script>
+</body>
+</html>

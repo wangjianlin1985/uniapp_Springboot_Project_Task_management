@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.task.dao.ProjecttempDao" >
+
+	<sql id="selectAllVO">
+		select
+			a.id,
+			a.name,
+			a.sort,
+			a.remark
+		from task_project_temp a 
+	</sql>
+	
+	<select id="list" parameterType="Projecttemp" resultType="Projecttemp">
+		<include refid="selectAllVO" />
+		order by a.sort desc
+	</select>
+
+	<select id="getById" parameterType="Long" resultType="Projecttemp">
+		<include refid="selectAllVO" />
+		where a.id = #{id}
+	</select>
+	
+	<insert id="add">
+		insert into task_project_temp(name,sort,remark) values (#{name},#{sort},#{remark})
+	</insert>
+
+	<update id="update">
+		update task_project_temp set name = #{name},sort = #{sort},remark = #{remark} where id = #{id}
+	</update>
+	
+	<delete id="deleteByIds">
+		delete from task_project_temp
+		where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+	</delete>
+
+
+</mapper>

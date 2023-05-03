@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.task.dao.TasklabelDao" >
+
+	<select id="list" resultType="Tasklabel">
+		select id,name from task_label
+	</select>
+	
+	<select id="getById" resultType="Tasklabel">
+		select id,name from task_label where id = #{id}
+	</select>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+		insert into task_label(name) values (#{name})
+	</insert>
+	
+	<update id="update">
+		update 
+			task_label
+		set 
+			name = #{name}
+		where id = #{id}
+	</update>
+
+	<delete id="deleteByIds">
+		delete from task_label
+		where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+	</delete>
+
+</mapper>

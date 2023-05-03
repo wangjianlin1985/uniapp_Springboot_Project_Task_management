@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+		<div class="row">
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+	    </div>
+	</div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "/task/projectuser/";
+        $(function() {
+            var options = {
+                url: prefix + "/todoList",
+                removeUrl: prefix + "/remove",
+                modalName: "列表",
+                columns: [
+                {
+                    field: 'id',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'projectName',
+                    title: '项目名称'
+                },
+                {
+                    field: 'userName',
+                    title: '邀请人'
+                },
+                {
+                	field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-primary btn-xs " href="javascript:void(0)" onclick="updateStatus(\'' + row.id + '\',1)">同意</a> ');
+                        actions.push('<a class="btn btn-success btn-xs " href="javascript:void(0)" onclick="updateStatus(\'' + row.id + '\',2)">不同意</a> ');
+	                    actions.push('<a class="btn btn-danger btn-xs " href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+        
+        function updateStatus(id,status){
+			$.operate.post(ctx + "/task/projectuser/updateStatus",{id:id,status:status});
+		}
+         
+    </script>
+</body>
+</html>

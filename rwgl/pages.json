@@ -1,0 +1,296 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "任务系统"
+		}
+	}, {
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": "登录",
+			"app-plus": {
+				"titleNView": {
+					"autoBackButton": false,
+					"buttons": [{
+						"type": "menu",
+						"float": "right"
+					}]
+				}
+			}
+		}
+	}, {
+		"path": "pages/login/longSetIP/longSetIP",
+		"style": {
+			"navigationBarTitleText": "配置IP端口"
+		}
+	}	
+        ,{
+            "path" : "pages/projecttemp/projecttemp",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "模板管理",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projecttemp/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "模板新增",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projecttemp/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "模板列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projecttemp/tempstep/tempstep",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "步驟列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projecttemp/tempstep/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "步骤添加",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projecttemp/tempstep/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "步骤修改",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/project",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/myproject",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的项目",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/myprojectHuishou",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的回收项目",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目新增",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目修改",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/user/user",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目参与人",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/user/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "邀请",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/user/yaoqing/yaoqing",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的邀请列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/projectjoin/projectjoin",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我参与的项目",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projectlabel/projectlabel",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "标签列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projectlabel/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "标签新增",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/projectlabel/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "标签修改",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/task/mytask/mytask",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的任务列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/task/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "任务新增",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/grzx/grzx",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人中心",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/grzx/updatePhone",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改手机",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/grzx/updateEmail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改邮箱",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/grzx/updateUserName",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改姓名",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/register/register",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "注册",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/task/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改任务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/task/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "任务详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/task/projecttask/projecttask",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "任务列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/sjfx/sjfx",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "数据分析",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
+    ],
+	
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#0081ff",
+		"navigationBarTitleText": "任务系统",
+		"navigationBarTextStyle": "white"
+	}
+}
